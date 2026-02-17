@@ -62,6 +62,15 @@ Once the backend is running, access Swagger UI at:
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.10-3.13 (Python 3.14 has compatibility issues with ChromaDB)
 - Ollama (for LLM inference)
 - 4GB+ RAM recommended
+
+## Known Issues
+
+### Python 3.14 Compatibility
+ChromaDB currently has compatibility issues with Python 3.14 due to its dependency on Pydantic v1. If you're using Python 3.14, you may encounter errors when running tests. 
+
+**Workaround:** Use Python 3.10, 3.11, 3.12, or 3.13 for development and testing until ChromaDB releases a Python 3.14-compatible version.
+
+The vector store implementation itself is correct and will work properly once the ChromaDB compatibility issue is resolved.

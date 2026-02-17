@@ -66,13 +66,13 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - **Property 7: Question embedding generation**
     - **Validates: Requirements 2.1**
 
-- [ ] 4. Implement Vector Store
-  - [ ] 4.1 Create VectorStore abstract base class
+- [x] 4. Implement Vector Store
+  - [x] 4.1 Create VectorStore abstract base class
     - Define interface: add_documents(), search(), delete_document(), get_document_count()
     - Define SearchResult data class
     - _Requirements: 3.1_
   
-  - [ ] 4.2 Implement ChromaDB vector store
+  - [x] 4.2 Implement ChromaDB vector store
     - Create ChromaVectorStore class implementing VectorStore interface
     - Initialize persistent ChromaDB client
     - Implement add_documents() to store embeddings with metadata
@@ -87,7 +87,7 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - **Property 13: Complete document deletion**
     - **Validates: Requirements 1.4, 1.5, 2.2, 3.4, 3.5, 12.3**
 
-- [ ] 5. Checkpoint - Core components complete
+- [x] 5. Checkpoint - Core components complete
   - Ensure all tests pass for DocumentProcessor, EmbeddingService, and VectorStore
   - Verify that documents can be processed, embedded, and stored/retrieved
   - Ask the user if questions arise
