@@ -50,8 +50,8 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - **Property 14: Error message descriptiveness**
     - **Validates: Requirements 1.7**
 
-- [ ] 3. Implement Embedding Service
-  - [ ] 3.1 Create EmbeddingService class
+- [x] 3. Implement Embedding Service
+  - [x] 3.1 Create EmbeddingService class
     - Load sentence-transformers model (all-MiniLM-L6-v2)
     - Implement embed_text() for single text
     - Implement embed_batch() for multiple texts
