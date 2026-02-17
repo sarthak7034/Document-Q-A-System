@@ -35,6 +35,8 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+**Windows Users:** If you encounter build errors, see [WINDOWS_SETUP.md](WINDOWS_SETUP.md) for alternative installation methods.
+
 3. Configure environment variables:
 ```bash
 cp .env.example .env

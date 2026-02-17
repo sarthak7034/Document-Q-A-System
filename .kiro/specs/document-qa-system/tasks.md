@@ -15,8 +15,8 @@ The implementation uses Python for the backend with FastAPI providing automatic 
   - Set up pytest configuration and test directory structure
   - _Requirements: 10.1, 10.6_
 
-- [ ] 2. Implement Document Processor
-  - [ ] 2.1 Create PDF text extraction module
+- [x] 2. Implement Document Processor
+  - [x] 2.1 Create PDF text extraction module
     - Write function to extract text from PDF using PyPDF2 or pdfplumber
     - Handle multi-page PDFs and preserve page numbers
     - Return structured data with page numbers and text content
@@ -26,7 +26,7 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - **Property 2: Complete text extraction**
     - **Validates: Requirements 1.2**
   
-  - [ ] 2.3 Implement text chunking with overlap
+  - [x] 2.3 Implement text chunking with overlap
     - Write chunking function that splits text into 500-1000 token chunks
     - Implement 100-token overlap between consecutive chunks
     - Preserve sentence boundaries (don't split mid-sentence)
@@ -40,7 +40,7 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - **Property 21: Chunk metadata preservation**
     - **Validates: Requirements 1.3, 9.1, 9.2, 9.3**
   
-  - [ ] 2.5 Create DocumentProcessor class
+  - [x] 2.5 Create DocumentProcessor class
     - Combine extraction and chunking into unified interface
     - Add error handling for corrupted PDFs and unsupported formats
     - Return ProcessedDocument with all chunks and metadata
