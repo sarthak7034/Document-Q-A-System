@@ -92,8 +92,8 @@ The implementation uses Python for the backend with FastAPI providing automatic 
   - Verify that documents can be processed, embedded, and stored/retrieved
   - Ask the user if questions arise
 
-- [ ] 6. Implement LLM Service
-  - [ ] 6.1 Create LLMService class
+- [x] 6. Implement LLM Service
+  - [x] 6.1 Create LLMService class
     - Implement connection to Ollama HTTP API
     - Create generate() method supporting both streaming and non-streaming modes
     - Add check_health() to verify Ollama availability
@@ -101,7 +101,7 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - Handle connection errors with clear messages
     - _Requirements: 4.1, 4.3, 4.4, 4.5_
   
-  - [ ] 6.2 Write unit tests for LLM service
+  - [x] 6.2 Write unit tests for LLM service
     - Test health check with mocked Ollama
     - Test error handling when Ollama is unavailable
     - Test response parsing for both streaming and non-streaming modes

@@ -3,6 +3,12 @@
 from .document_processor import DocumentProcessor, ProcessedDocument
 from .pdf_extractor import Page, extract_text_from_pdf
 from .text_chunker import Chunk, chunk_text, chunk_pages
+from .llm_service import (
+    LLMService,
+    LLMConnectionError,
+    LLMModelNotFoundError,
+    LLMGenerationError,
+)
 
 __all__ = [
     'DocumentProcessor',
@@ -12,4 +18,8 @@ __all__ = [
     'extract_text_from_pdf',
     'chunk_text',
     'chunk_pages',
+    'LLMService',
+    'LLMConnectionError',
+    'LLMModelNotFoundError',
+    'LLMGenerationError',
 ]
