@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document-qa-system"
+version = "0.1.0"
+description = "A locally-hosted backend for PDF document Q&A using RAG (Retrieval Augmented Generation)"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = { text = "MIT" }
+
+dependencies = [
+    # Core web framework
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+
+    # AI / ML
+    "sentence-transformers",
+    "chromadb<1.5.0",   # ChromaDB has compatibility issues with Python 3.14
+    "faiss-cpu",
+    "pypdf2",
+
+    # Utilities
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    # Testing
+    "hypothesis",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "httpx",
+]
+
+# ---------------------------------------------------------------------------
+# Tool configurations (replaces pytest.ini)
+# ---------------------------------------------------------------------------
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = [
+    "--verbose",
+    "--cov=app",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "-p no:warnings",
+]
+
+[tool.hypothesis]
+max_examples = 100
+deadline = "none"
+
+# ---------------------------------------------------------------------------
+# Package discovery
+# ---------------------------------------------------------------------------
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]

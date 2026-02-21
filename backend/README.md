@@ -16,8 +16,7 @@ backend/
 │   ├── chroma_db/         # ChromaDB persistent storage
 │   └── metadata.db        # SQLite metadata database
 ├── logs/                   # Application logs (created at runtime)
-├── requirements.txt        # Python dependencies
-├── pytest.ini             # Pytest configuration
+├── pyproject.toml          # Project metadata, dependencies & tool configuration
 ├── .env.example           # Environment variable templates
 └── README.md              # This file
 ```
@@ -30,20 +29,25 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-2. Install dependencies:
+2. Install core dependencies:
 ```bash
-pip install -r requirements.txt
+pip install .
 ```
 
-**Windows Users:** If you encounter build errors, see [WINDOWS_SETUP.md](WINDOWS_SETUP.md) for alternative installation methods.
+3. Install development & testing dependencies:
+```bash
+pip install ".[dev]"
+```
 
-3. Configure environment variables:
+> **Windows Users:** If you encounter build errors, see [WINDOWS_SETUP.md](WINDOWS_SETUP.md) for alternative installation methods.
+
+4. Configure environment variables:
 ```bash
 cp .env.example .env
 # Edit .env with your configuration
 ```
 
-4. Run tests:
+5. Run tests:
 ```bash
 pytest
 ```
@@ -53,6 +57,7 @@ pytest
 - All application code goes in `app/`
 - All tests go in `tests/`
 - Use pytest for testing with hypothesis for property-based tests
+- Pytest and Hypothesis are configured in `pyproject.toml` under `[tool.pytest.ini_options]` and `[tool.hypothesis]`
 - Follow the implementation plan in `.kiro/specs/document-qa-system/tasks.md`
 
 ## API Documentation
@@ -62,14 +67,14 @@ Once the backend is running, access Swagger UI at:
 
 ## Requirements
 
-- Python 3.10-3.13 (Python 3.14 has compatibility issues with ChromaDB)
+- Python 3.10–3.13 (Python 3.14 has compatibility issues with ChromaDB)
 - Ollama (for LLM inference)
 - 4GB+ RAM recommended
 
 ## Known Issues
 
 ### Python 3.14 Compatibility
-ChromaDB currently has compatibility issues with Python 3.14 due to its dependency on Pydantic v1. If you're using Python 3.14, you may encounter errors when running tests. 
+ChromaDB currently has compatibility issues with Python 3.14 due to its dependency on Pydantic v1. If you're using Python 3.14, you may encounter errors when running tests.
 
 **Workaround:** Use Python 3.10, 3.11, 3.12, or 3.13 for development and testing until ChromaDB releases a Python 3.14-compatible version.
 
