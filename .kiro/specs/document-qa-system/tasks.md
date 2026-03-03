@@ -125,8 +125,8 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - Return appropriate message to user
     - _Requirements: 2.6_
 
-- [ ] 8. Implement file upload and storage
-  - [ ] 8.1 Create file storage module
+- [-] 8. Implement file upload and storage
+  - [x] 8.1 Create file storage module
     - Implement file size validation (max 50MB)
     - Generate unique document IDs
     - Save uploaded files to disk
