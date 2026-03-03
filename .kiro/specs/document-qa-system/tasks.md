@@ -107,8 +107,8 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - Test response parsing for both streaming and non-streaming modes
     - _Requirements: 4.4_
 
-- [ ] 7. Implement RAG Engine
-  - [ ] 7.1 Create RAGEngine class
+- [x] 7. Implement RAG Engine
+  - [x] 7.1 Create RAGEngine class
     - Initialize with VectorStore, EmbeddingService, and LLMService
     - Implement retrieve_context() to get relevant chunks
     - Implement construct_prompt() with template
@@ -120,7 +120,7 @@ The implementation uses Python for the backend with FastAPI providing automatic 
     - **Property 10: Source citation inclusion**
     - **Validates: Requirements 2.3, 2.7**
   
-  - [ ] 7.3 Add edge case handling
+  - [x] 7.3 Add edge case handling
     - Handle case when no relevant chunks found (below similarity threshold)
     - Return appropriate message to user
     - _Requirements: 2.6_
