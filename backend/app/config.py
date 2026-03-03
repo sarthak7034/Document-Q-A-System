@@ -94,6 +94,21 @@ class Config:
         if cls.LLM_MAX_TOKENS <= 0:
             errors.append(f"LLM_MAX_TOKENS must be positive, got {cls.LLM_MAX_TOKENS}")
         
+        # Validate max chunks for context
+        if cls.MAX_CHUNKS_FOR_CONTEXT <= 0:
+            errors.append(
+                f"MAX_CHUNKS_FOR_CONTEXT must be positive, "
+                f"got {cls.MAX_CHUNKS_FOR_CONTEXT}"
+            )
+        
+        # Validate embedding device
+        valid_devices = ["cpu", "cuda", "mps"]
+        if cls.EMBEDDING_DEVICE.lower() not in valid_devices:
+            errors.append(
+                f"EMBEDDING_DEVICE must be one of {valid_devices}, "
+                f"got '{cls.EMBEDDING_DEVICE}'"
+            )
+        
         # Validate log level
         valid_log_levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
         if cls.LOG_LEVEL.upper() not in valid_log_levels:
