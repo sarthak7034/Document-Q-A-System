@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Backend FastAPI service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: document-qa-backend
+    ports:
+      - "8000:8000"
+    environment:
+      # Backend Configuration
+      - BACKEND_PORT=8000
+      - UPLOAD_DIR=/app/data/documents
+      - MAX_FILE_SIZE_MB=50
+      
+      # Vector Store Configuration
+      - VECTOR_STORE_TYPE=chromadb
+      - CHROMA_PERSIST_DIR=/app/data/chroma_db
+      - FAISS_INDEX_PATH=/app/data/faiss_index
+      
+      # Embedding Configuration
+      - EMBEDDING_MODEL=all-MiniLM-L6-v2
+      - EMBEDDING_DEVICE=cpu
+      
+      # LLM Configuration (pointing to ollama service)
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=llama2
+      - LLM_TEMPERATURE=0.7
+      - LLM_MAX_TOKENS=512
+      
+      # Chunking Configuration
+      - CHUNK_SIZE=1000
+      - CHUNK_OVERLAP=100
+      - MAX_CHUNKS_FOR_CONTEXT=5
+      
+      # Logging Configuration
+      - LOG_LEVEL=INFO
+      - LOG_FILE=/app/logs/app.log
+    volumes:
+      # Persistent data storage
+      - backend_data:/app/data
+      - backend_logs:/app/logs
+    networks:
+      - document-qa-network
+    depends_on:
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/api/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  # Ollama LLM service
+  ollama:
+    image: ollama/ollama:latest
+    container_name: document-qa-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      # Persistent storage for Ollama models
+      - ollama_data:/root/.ollama
+    networks:
+      - document-qa-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+# Named volumes for persistent data
+volumes:
+  backend_data:
+    driver: local
+  backend_logs:
+    driver: local
+  ollama_data:
+    driver: local
+
+# Network for service communication
+networks:
+  document-qa-network:
+    driver: bridge
