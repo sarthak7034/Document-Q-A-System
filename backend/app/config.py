@@ -138,6 +138,7 @@ class Config:
             Path(directory).mkdir(parents=True, exist_ok=True)
 
 
-# Validate configuration on module import
-Config.validate()
-Config.ensure_directories()
+# Note: Validation is called explicitly by the application at startup
+# This allows tests to patch configuration values before validation
+# Config.validate()
+# Config.ensure_directories()

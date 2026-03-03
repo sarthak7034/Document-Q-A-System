@@ -67,6 +67,10 @@ async def lifespan(app: FastAPI):
     
     This initializes services on startup and cleans up on shutdown.
     """
+    # Validate configuration first
+    Config.validate()
+    Config.ensure_directories()
+    
     logger.info("Starting Document Q&A System...")
     logger.info(f"Configuration: Vector Store={Config.VECTOR_STORE_TYPE}, "
                 f"Embedding Model={Config.EMBEDDING_MODEL}, "
